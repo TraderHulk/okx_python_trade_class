@@ -129,7 +129,7 @@ class okkSwap(object):
 
         return uid
 
-    def convert_contract_coin(self,symbol,qty,type='1',unit="coin"):
+    def convert_contract_coin(self,symbol,qty,px,type='1',unit="coin"):
         """
         币张转化
         :param instId:
@@ -138,8 +138,8 @@ class okkSwap(object):
         """
         qty_int = 0
         try:
-            r=self.publicAPI.convert_contract_coin( instId=symbol,type=type, sz=qty,unit=unit)
-            qty_int = int(r['data'][0]['sz'])
+            r=self.publicAPI.convert_contract_coin( instId=symbol,type=type,px=px, sz=qty,unit=unit)
+            qty_int = r['data'][0]['sz']
             logging.info("获得开仓张数:{}".format(qty_int))
         except Exception as e:
             logging.info("币张转化有问题！！！qty:{}".format(qty))
@@ -537,7 +537,7 @@ if __name__ == "__main__":
     print("{} 价格精度：{},下单量精度：{}".format(symbol, tickSz, minSz))
     qty_amount = 10 / float(0.0000078)
     print("下单量：",qty_amount)
-    qty = o.convert_contract_coin(symbol=symbol, qty=int(qty_amount))  # 每一份所能下的张数
+    qty = o.convert_contract_coin(symbol=symbol,px=0.00000791, qty=qty_amount)  # 每一份所能下的张数
     print("张数：",qty)
 
 
