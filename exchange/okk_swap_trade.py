@@ -529,7 +529,7 @@ if __name__ == "__main__":
     coin = "PEPE"
     api_key = "b1bdbc82-1-8165-8c5282b5447b"
     secret_key = "DD3400CEA1B48725CE9BB43439B41E54"
-    passphrase = "Huang1018@"
+    passphrase = ""
     o = okkSwap(api_key,secret_key,passphrase)
     symbol = coin + "-USDT-SWAP"
     minSz, tickSz = o.get_instruments(symbol=symbol)  # 获取该币种的下单量精度 和price 精度
